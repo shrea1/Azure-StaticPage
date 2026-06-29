@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Tech Adventure</title>
+    <style>
+        /* --- CSS STYLING --- */
+        body {
+            background-color: #0f172a;
+            color: #38bdf8;
+            font-family: 'Courier New', Courier, monospace;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+        }
+
+        .game-container {
+            background-color: #1e293b;
+            border: 2px solid #38bdf8;
+            border-radius: 10px;
+            padding: 30px;
+            width: 90%;
+            max-width: 500px;
+            box-shadow: 0 0 20px rgba(56, 189, 248, 0.3);
+            text-align: center;
+        }
+
+        .terminal-header {
+            border-bottom: 1px solid #334155;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            font-size: 14px;
+            color: #94a3b8;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .story-text {
+            color: #f1f5f9;
+            font-size: 18px;
+            line-height: 1.6;
+            min-height: 100px;
+            margin-bottom: 30px;
+        }
+
+        .btn-container {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .choice-btn {
+            background-color: transparent;
+            border: 1px solid #38bdf8;
+            color: #38bdf8;
+            padding: 12px;
+            font-family: inherit;
+            font-size: 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .choice-btn:hover {
+            background-color: #38bdf8;
+            color: #0f172a;
+            box-shadow: 0 0 10px rgba(56, 189, 248, 0.5);
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="game-container">
+        <div class="terminal-header">
+            <span>STATUS: ONLINE</span>
+            <span>PLAYER1_PORTFOLIO.EXE</span>
+        </div>
+        
+        <div class="story-text" id="story">
+            Loading introduction sequence...
+        </div>
+
+        <div class="btn-container" id="choices">
+            </div>
+    </div>
+
+    <script>
+        // Game data containing scenes, text, and option paths
+        const storyNodes = {
+            start: {
+                text: "🤖 Welcome, Traveler! You have encountered a wild Developer. What would you like to investigate first?",
+                options: [
+                    { text: "Check their Skill Inventory 🎒", nextNode: "skills" },
+                    { text: "Ask about their Current Quest ⚔️", nextNode: "quest" }
+                ]
+            },
+            skills: {
+                text: "✨ Inventory open: High proficiency in HTML, CSS, and JavaScript. Equipped with an infinite stack of coffee and curiosity.",
+                options: [
+                    { text: "Ask about their goals 🚀", nextNode: "quest" },
+                    { text: "Reset simulation 🔄", nextNode: "start" }
+                ]
+            },
+            quest: {
+                text: "🚀 Current Quest: Building interactive web applications, mastering modern frameworks, and trying not to break production.",
+                options: [
+                    { text: "Check their tech stack 🎒", nextNode: "skills" },
+                    { text: "Hire them / Team up 🤝", nextNode: "win" }
+                ]
+            },
+            win: {
+                text: "🎉 Success! You've formed an alliance. A great journey lies ahead! (Feel free to replace this text with your contact info or social links!)",
+                options: [
+                    { text: "Play Again 🔄", nextNode: "start" }
+                ]
+            }
+        };
+
+        // Function to handle switching scenes
+        function showNode(nodeKey) {
+            const node = storyNodes[nodeKey];
+            const storyTextElement = document.getElementById("story");
+            const btnContainer = document.getElementById("choices");
+
+            // Update text
+            storyTextElement.innerText = node.text;
+
+            // Clear old buttons
+            btnContainer.innerHTML = "";
+
+            // Create new buttons for the choices
+            node.options.forEach(option => {
+                const button = document.createElement("button");
+                button.innerText = option.text;
+                button.classList.add("choice-btn");
+                button.onclick = () => showNode(option.nextNode);
+                btnContainer.appendChild(button);
+            });
+        }
+
+        // Start the game on page load
+        showNode("start");
+    </script>
+
+</body>
+</html>
