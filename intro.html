@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Me</title>
+    <style>
+        /* --- CSS STYLING --- */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #74ebe1 0%, #d4a5ec 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .profile-card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            max-width: 350px;
+            width: 100%;
+        }
+
+        .profile-img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background-color: #ddd;
+            margin: 0 auto 15px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 40px;
+        }
+
+        h1 {
+            margin: 10px 0 5px 0;
+            color: #333;
+            font-size: 24px;
+        }
+
+        h2 {
+            margin: 0 0 15px 0;
+            color: #6c757d;
+            font-size: 16px;
+            font-weight: 400;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        p {
+            color: #555;
+            font-size: 14px;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .btn {
+            background-color: #6f42c1;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 14px;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: #59359a;
+        }
+
+        #fun-fact {
+            margin-top: 15px;
+            padding: 10px;
+            background-color: #f8f9fa;
+            border-left: 4px solid #6f42c1;
+            font-style: italic;
+            display: none; /* Hidden by default */
+        }
+    </style>
+</head>
+<body>
+
+    <div class="profile-card">
+        <div class="profile-img">🚀</div>
+        
+        <h1>Your Name</h1>
+        <h2>Aspiring Developer</h2>
+        
+        <p>
+            Hi there! I am passionate about learning tech, building clean interfaces, 
+            and solving interesting problems with code. Welcome to my little corner of the web!
+        </p>
+
+        <button class="btn" onclick="toggleFact()">Reveal a Fun Fact</button>
+        
+        <div id="fun-fact">
+            ☕ I run almost entirely on caffeine and curiosity!
+        </div>
+    </div>
+
+    <script>
+        function toggleFact() {
+            const factDiv = document.getElementById('fun-fact');
+            
+            if (factDiv.style.display === 'none' || factDiv.style.display === '') {
+                factDiv.style.display = 'block';
+            } else {
+                factDiv.style.display = 'none';
+            }
+        }
+    </script>
+
+</body>
+</html>
